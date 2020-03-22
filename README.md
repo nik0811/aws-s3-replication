@@ -1,7 +1,7 @@
 # aws-s3-replication
 
-
-```#!/bin/bash
+```
+#!/bin/bash
 
 old_us3bucket=""
 old_eus3bucket=""
@@ -34,7 +34,7 @@ else
 	diff -y -w old_bucket_eu.txt new_bucket_eu.txt | tee output_eu_diff.txt
 	rm -rf old_bucket_us.txt old_bucket_eu.txt new_bucket_eu.txt new_bucket_us.txt
 	exit 1
-fi```
+fi
 
 
 
