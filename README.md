@@ -18,14 +18,14 @@ if [[ $? != 0 ]]; then
 	echo "make sure to install AWSCLI"
 	exit 0
 else
-	avidownloads=$(AWS_ACCESS_KEY_ID=$old_aws_access_key_id AWS_SECRET_ACCESS_KEY=$old_aws_secret_access_key aws s3 ls s3://$old_us3bucket/ --recursive --summarize | grep "Total Objects")
-	avidownloadseu=$(AWS_ACCESS_KEY_ID=$old_aws_access_key_id AWS_SECRET_ACCESS_KEY=$old_aws_secret_access_key aws s3 ls s3://$old_eus3bucket/ --recursive --summarize | grep "Total Objects")
-	prodavidownloadsus=$(AWS_ACCESS_KEY_ID=$new_aws_access_key_id AWS_SECRET_ACCESS_KEY=$new_aws_secret_access_key aws s3 ls s3://$new_us3bucket/ --recursive --summarize | grep "Total Objects")
-      	prodavidownloadseu=$(AWS_ACCESS_KEY_ID=$new_aws_access_key_id AWS_SECRET_ACCESS_KEY=$new_aws_secret_access_key aws s3 ls s3://$new_eus3bucket/ --recursive --summarize | grep "Total Objects:")
-	echo "OLD_AVIDOWNLOADS_US: $avidownloads"
-	echo "NEW_AVIDOWNLOADS_US: $prodavidownloadsus"
-	echo "OLD_AVIDOWNLOADS_EU: $avidownloadseu"
-	echo "NEW_AVIDOWNLOADS_EU: $prodavidownloadseu"
+	nikdownloads=$(AWS_ACCESS_KEY_ID=$old_aws_access_key_id AWS_SECRET_ACCESS_KEY=$old_aws_secret_access_key aws s3 ls s3://$old_us3bucket/ --recursive --summarize | grep "Total Objects")
+	nikdownloadseu=$(AWS_ACCESS_KEY_ID=$old_aws_access_key_id AWS_SECRET_ACCESS_KEY=$old_aws_secret_access_key aws s3 ls s3://$old_eus3bucket/ --recursive --summarize | grep "Total Objects")
+	prodnikdownloadsus=$(AWS_ACCESS_KEY_ID=$new_aws_access_key_id AWS_SECRET_ACCESS_KEY=$new_aws_secret_access_key aws s3 ls s3://$new_us3bucket/ --recursive --summarize | grep "Total Objects")
+      	prodnikdownloadseu=$(AWS_ACCESS_KEY_ID=$new_aws_access_key_id AWS_SECRET_ACCESS_KEY=$new_aws_secret_access_key aws s3 ls s3://$new_eus3bucket/ --recursive --summarize | grep "Total Objects:")
+	echo "OLD_NIKDOWNLOADS_US: $nikdownloads"
+	echo "NEW_NIKDOWNLOADS_US: $prodnikdownloadsus"
+	echo "OLD_NIKDOWNLOADS_EU: $nikdownloadseu"
+	echo "NEW_NIKDOWNLOADS_EU: $prodnikdownloadseu"
 	AWS_ACCESS_KEY_ID=$old_aws_access_key_id AWS_SECRET_ACCESS_KEY=$old_aws_secret_access_key aws s3 ls s3://$old_us3bucket --recursive | awk '{$1=$2=$3=""; print $0}' | sed 's/^[ \t]*//' | sort > old_bucket_us.txt
 	AWS_ACCESS_KEY_ID=$new_aws_access_key_id AWS_SECRET_ACCESS_KEY=$new_aws_secret_access_key aws s3 ls s3://$new_us3bucket --recursive | awk '{$1=$2=$3=""; print $0}' | sed 's/^[ \t]*//' | sort > new_bucket_us.txt
         AWS_ACCESS_KEY_ID=$old_aws_access_key_id AWS_SECRET_ACCESS_KEY=$old_aws_secret_access_key aws s3 ls s3://$old_eus3bucket --recursive | awk '{$1=$2=$3=""; print $0}' | sed 's/^[ \t]*//' | sort > old_bucket_eu.txt
